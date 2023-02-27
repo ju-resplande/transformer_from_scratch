@@ -1,3 +1,9 @@
+import torch
+import torch.nn as nn
+
+from encoder import Encoder
+from decoder import Decoder
+
 class Transformer(nn.Module):
     def __init__(
         self,
@@ -26,7 +32,7 @@ class Transformer(nn.Module):
             max_length
         )
 
-        self.decoder(
+        self.decoder = Decoder(
             trg_vocab_size,
             embed_size,
             num_layers,
@@ -42,13 +48,13 @@ class Transformer(nn.Module):
         self.device = device
     
     def make_src_mask(self, src):
-        src = (src != self.src_pad_idx).unsqueeze(1).unsqueeze(2)
+        src_mask = (src != self.src_pad_idx).unsqueeze(1).unsqueeze(2)
         # (batch_dim, 1, 1, src_len)
 
         return src_mask.to(self.device)
     
     def make_trg_mask(self, trg):
-        batch_dim, trg_len = trg.shape()
+        batch_dim, trg_len = trg.shape
         trg_mask = torch.tril(torch.ones((trg_len, trg_len))).expand(
             batch_dim, 1, trg_len, trg_len
         )

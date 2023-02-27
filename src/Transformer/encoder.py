@@ -25,7 +25,7 @@ class Encoder(nn.Module):
             [
                 TransformerBlock(
                     embed_size,
-                    heads
+                    heads,
                     dropout=dropout,
                     forward_expansion=forward_expansion
                 )
