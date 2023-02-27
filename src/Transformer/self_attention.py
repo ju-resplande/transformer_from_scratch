@@ -23,8 +23,12 @@ class SelfAttention(nn.Module):
 
         # Split embedding into self.heads piece (embed_size) -> (heads, head_dim)
         values = values.reshape(batch_dim, value_len, self.heads, self.head_dim)
-        keys = values.reshape(batch_dim, key_len, self.heads, self.head_dim)
-        queries = values.reshape(batch_dim, query_len, self.heads, self.head_dim)
+        keys = keys.reshape(batch_dim, key_len, self.heads, self.head_dim)
+        queries = query.reshape(batch_dim, query_len, self.heads, self.head_dim)
+
+        values = self.values(values)
+        keys = self.keys(keys)
+        queries = self.queries(queries)
 
         # queries shape: (batch_dim, query_len, heads, heads_dim)
         # keys shape: (batch_dim, key_len, heads, heads_dim)
@@ -36,7 +40,7 @@ class SelfAttention(nn.Module):
             energy = energy.masked_fill(mask == 0, float('-inf'))
         
         #Softmax normalized in key_len (input/output)
-        attention = torch.softmax(energy / (self.embed_size) ** (1/2), dim=3)
+        attention = torch.softmax(energy / (self.embed_size ** (1/2)), dim=3)
 
         # attention shape: (batch_dim, heads, query_len, key_len)
         # values shape: (batch_dim, value_len, heads, heads_dim)

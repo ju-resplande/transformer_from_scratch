@@ -64,4 +64,6 @@ class Decoder(nn.Module):
 
         out = self.fc(x)
 
+        return out
+
         
