@@ -7,11 +7,11 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://youtu.be/ir8ci7Hr194">
+    <img src="https://i.ytimg.com/vi/ir8ci7Hr194/maxresdefault.jpg" alt="Logo" height="300">
   </a>
 
-  <h3 align="center">Transformers from scratch</h3>
+  <h3 align="center">Transformer from scratch</h3>
 
   <p align="center">
     Transformer implementation from scratch following  <a href="https://youtu.be/U0s0f995w14">Youtube tutorial</a>.
