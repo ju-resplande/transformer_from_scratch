@@ -1,8 +1,8 @@
 import torch
 import torch.nn as nn
 
-from self_attention import SelfAttention
-from transformer_block import TransformerBlock
+from transformer.self_attention import SelfAttention
+from transformer.transformer_block import TransformerBlock
 
 class DecoderBlock(nn.Module):
     def __init__(
